@@ -30,14 +30,9 @@ while True:
     if coordenada_y_[-1] <= 0:
         break
 
-
-print(coordenada_y_[-1])
-print(coordenada_x[-1])
-print(temps)
-
+plt.style.use("bmh")
 plt.scatter(coordenada_x, coordenada_y_)
-
-
-
+plt.show() 
+plt.scatter(coordenada_x, coordenada_y_)
 
 #def mort(): #calcul probabilitat de mort
