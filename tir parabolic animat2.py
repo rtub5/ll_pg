@@ -1,12 +1,18 @@
-import matplotlib.pyplot as plt
+#Informe: https://docs.google.com/document/d/11NaIaZwYPun4qE8nseQSdyG-gVu_HgKF8nTu3j5SVgw/edit?usp=sharing 
 
-import numpy as np
+#Importem les llibreries 
+
+import matplotlib.pyplot as plt 
+
+import numpy as np	
 
 from matplotlib.animation import FuncAnimation
 
 
+
 fig, ax = plt.subplots()
 
+#Definim les variables i llistes 
 
 llistax = []
 
@@ -14,7 +20,7 @@ zerosx = []
 
 zerosy = []
 
-
+# La funció ts ens permet regular la intensitat 
 
 Ts = 0.02
 
@@ -27,7 +33,8 @@ xdata, ydata = [], []
 ln, = plt.plot([], [], 'ro')
 
            
-
+#demanem que l'usuari entri les dades
+	
 x0 = float(input("x0: "))
 
 y0 = float(input("y0: "))
@@ -62,7 +69,7 @@ velocitat_y = []
 
 
 
-while True:
+while True: #Creem un bucle per tal de generat tots els "punts de dades" 
 
 	    
 
@@ -84,26 +91,26 @@ while True:
 
     velocitat_y.append(float(vy0 - gravetat_completa ** temps)) 
 
-	    
 
-    if coordenada_y_[-1] <= 0:
+
+    if coordenada_y_[-1] <= 0: #Trenquem el bucle quan l'objecte arriba a l'altura del terra 
 
     	break
 
 
 
-print(coordenada_y_[-1])
+print(coordenada_y_[-1]) #Imprimim els resultats de les operacions 
 
 print(coordenada_x[-1])
 
 print(temps)
 
 
-ax.quiver(coordenada_x, coordenada_y_, velocitat_x, zerosy) 
+ax.quiver(coordenada_x, coordenada_y_, velocitat_x, zerosy) #Creem vectors per tal de projectar-los posteriorment 
 
 
 
-def init():
+def init(): #Creem el gràfic i el presentem 
 
     ax.set_xlim(0, max(coordenada_x))
 
@@ -113,7 +120,7 @@ def init():
 
     
 
-def update(frame):
+def update(frame): 
 
 	ln.set_data(coordenada_x[frame],coordenada_y_[frame])
 
@@ -124,12 +131,9 @@ def update(frame):
 	return ln, r							
 
 	
-ani = FuncAnimation(fig, update, frames=range(0,len(coordenada_x)),
+ani = FuncAnimation(fig, update, frames=range(0,len(coordenada_x)), #Finalment, creem l'animació, i fem moure el punt
 
                     init_func=init,blit=True, interval = Ts*1000)
 
-#q = plt.quiver(coordenada_x, coordenada_y_, zerosx, velocitat_y)
-
-#
 
 plt.show() 
